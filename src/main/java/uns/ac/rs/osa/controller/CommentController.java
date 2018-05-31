@@ -1,20 +1,15 @@
 package uns.ac.rs.osa.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import uns.ac.rs.osa.dto.CommentDTO;
-import uns.ac.rs.osa.dto.PostDTO;
 import uns.ac.rs.osa.entity.Comment;
-import uns.ac.rs.osa.entity.Post;
 import uns.ac.rs.osa.service.CommentServiceInterface;
 import uns.ac.rs.osa.service.PostServiceInterface;
 import uns.ac.rs.osa.service.UserServiceInterface;
@@ -99,7 +94,7 @@ public class CommentController {
 			commentDTO.add(new CommentDTO(c));
 		}
 		return new ResponseEntity<List<CommentDTO>>(commentDTO, HttpStatus.OK);
-	}dsa
+	}
 
 	@GetMapping(value="like")
 	public ResponseEntity<List<CommentDTO>> findAllByLike(){
