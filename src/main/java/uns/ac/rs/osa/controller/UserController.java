@@ -6,12 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import uns.ac.rs.osa.dto.UserDTO;
 import uns.ac.rs.osa.entity.User;
@@ -56,7 +51,24 @@ public class UserController {
 		user = userService.save(user);
 		return new ResponseEntity<UserDTO>(new UserDTO(user), HttpStatus.CREATED);
 	}
-	
+
+
+	@PutMapping(value="/update/{id}", consumes="application/json")
+	public ResponseEntity<UserDTO> updatePost(@RequestBody UserDTO userDTO, @PathVariable("id") Integer id){
+		User user = userService.findOne(id);
+
+		if(user == null) {
+			return new ResponseEntity<UserDTO>(HttpStatus.BAD_REQUEST);
+		}
+
+		user.setName(userDTO.getName());
+		user.setUsername(userDTO.getUsername());
+		user.setPassword(userDTO.getPassword());
+
+		user = userService.save(user);
+		return new ResponseEntity<UserDTO>(new UserDTO(user), HttpStatus.OK);
+	}
+
 	@GetMapping(value="{username}/{password}")
 	public ResponseEntity<UserDTO> login(@PathVariable("username") String username, @PathVariable("password") String password){
 		User user = userService.findByUsernameAndPassword(username, password);

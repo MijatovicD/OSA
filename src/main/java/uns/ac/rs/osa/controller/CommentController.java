@@ -73,6 +73,26 @@ public class CommentController {
 	        return new ResponseEntity<List<CommentDTO>>(commentDTO,HttpStatus.OK);
 	    }
 
+
+
+	@PutMapping(value="/update/{id}", consumes="application/json")
+	public ResponseEntity<CommentDTO> updateComment(@RequestBody CommentDTO commentDTO, @PathVariable("id") Integer id){
+		Comment comment = commentService.findOne(id);
+
+		if(comment == null) {
+			return new ResponseEntity<CommentDTO>(HttpStatus.BAD_REQUEST);
+		}
+
+		comment.setTitle(commentDTO.getTitle());
+		comment.setDescription(commentDTO.getDescription());
+		comment.setDate(commentDTO.getDate());
+		comment.setLikes(commentDTO.getLikes());
+		comment.setDislikes(commentDTO.getDislikes());
+		comment.setUser(userService.findOne(commentDTO.getUser().getId()));
+
+		comment = commentService.save(comment);
+		return new ResponseEntity<CommentDTO>(new CommentDTO(comment), HttpStatus.OK);
+	}
 	@DeleteMapping(value="/delete/{id}")
 	public ResponseEntity<Void> deleteComment(@PathVariable("id") Integer id){
 		Comment comment = commentService.findOne(id);
