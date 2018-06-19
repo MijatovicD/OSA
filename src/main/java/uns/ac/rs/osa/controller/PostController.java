@@ -133,9 +133,9 @@ public class PostController {
 		return new ResponseEntity<List<PostDTO>>(postDTO, HttpStatus.OK);
 	}
 
-	@RequestMapping(value="/searchUsers/{name}")
-	public ResponseEntity<List<PostDTO>> searchPostByUsers(@PathVariable("name") String name){
-		List<Post> posts = postService.findByUser(userService.findByUsername(name));
+	@RequestMapping(value="/searchUsers/{username}")
+	public ResponseEntity<List<PostDTO>> searchPostByUsers(@PathVariable("username") String username){
+		List<Post> posts = postService.findByUser(userService.findByUsername(username));
 		List<PostDTO> postDTO = new ArrayList<PostDTO>();
 		for (Post p : posts) {
 			postDTO.add(new PostDTO(p));
@@ -156,7 +156,7 @@ public class PostController {
 
 	@GetMapping(value="date")
 	public ResponseEntity<List<PostDTO>> findAllByDate(){
-		List<Post> posts = postService.findAllByOrderByDateAsc();
+		List<Post> posts = postService.findAllByOrderByDateDesc();
 		List<PostDTO> postDTO = new ArrayList<PostDTO>();
 		for (Post p : posts) {
 			postDTO.add(new PostDTO(p));
@@ -166,7 +166,7 @@ public class PostController {
 
 	@GetMapping(value="like")
 	public ResponseEntity<List<PostDTO>> findAllByLike(){
-		List<Post> posts = postService.findAllOrderByLikesAsc();
+		List<Post> posts = postService.findAllOrderByLikesDesc();
 		List<PostDTO> postDTO = new ArrayList<PostDTO>();
 		for (Post p : posts){
 			postDTO.add(new PostDTO(p));

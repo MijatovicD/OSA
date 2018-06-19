@@ -24,7 +24,7 @@ public interface PostServiceInterface {
 
 	List<Post> findByUsersName(User userName);
 
-	List<Post> findAllByOrderByDateAsc();
+	List<Post> findAllByOrderByDateDesc();
 
-	List<Post> findAllOrderByLikesAsc();
+	List<Post> findAllOrderByLikesDesc();
 }

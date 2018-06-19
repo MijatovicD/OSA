@@ -4,16 +4,11 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+import javax.persistence.*;
 
 import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
 @Table(name="users")
@@ -38,6 +33,9 @@ public class User implements Serializable{
 	
 	@OneToMany(cascade={ALL}, fetch=LAZY, mappedBy="user")
 	private Set<Comment> comments = new HashSet<Comment>();
+
+	@Enumerated(EnumType.STRING)
+	private Role role;
 	
 	public User() {
 		
@@ -74,6 +72,14 @@ public class User implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
 /*
 	public Set<Post> getPosts() {
 		return posts;
@@ -91,13 +97,17 @@ public class User implements Serializable{
 		this.comments = comments;
 	}
 */
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", username=" + username + ", password=" + password +"]";
+		return "User{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", username='" + username + '\'' +
+				", password='" + password + '\'' +
+				", posts=" + posts +
+				", comments=" + comments +
+				", role=" + role +
+				'}';
 	}
-
-	
-	
-	
-	
 }

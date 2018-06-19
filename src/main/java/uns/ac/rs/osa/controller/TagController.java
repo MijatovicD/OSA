@@ -52,7 +52,7 @@ public class TagController {
 		
 	}
 	
-	@PostMapping(value="/add", consumes="application/json")
+	@PostMapping(consumes="application/json")
 	public ResponseEntity<TagDTO> savaTag(@RequestBody TagDTO tagDTO){
 		Tag tag = new Tag();
 		tag.setName(tagDTO.getName());

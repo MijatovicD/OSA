@@ -93,6 +93,7 @@ public class CommentController {
 		comment = commentService.save(comment);
 		return new ResponseEntity<CommentDTO>(new CommentDTO(comment), HttpStatus.OK);
 	}
+
 	@DeleteMapping(value="/delete/{id}")
 	public ResponseEntity<Void> deleteComment(@PathVariable("id") Integer id){
 		Comment comment = commentService.findOne(id);

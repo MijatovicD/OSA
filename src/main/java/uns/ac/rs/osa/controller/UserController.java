@@ -54,7 +54,7 @@ public class UserController {
 
 
 	@PutMapping(value="/update/{id}", consumes="application/json")
-	public ResponseEntity<UserDTO> updatePost(@RequestBody UserDTO userDTO, @PathVariable("id") Integer id){
+	public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO, @PathVariable("id") Integer id){
 		User user = userService.findOne(id);
 
 		if(user == null) {

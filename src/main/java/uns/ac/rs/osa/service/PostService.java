@@ -56,13 +56,13 @@ public class PostService implements PostServiceInterface {
 	}
 
 	@Override
-	public List<Post> findAllByOrderByDateAsc(){
-		return postRepository.findAllByOrderByDateAsc();
+	public List<Post> findAllByOrderByDateDesc(){
+		return postRepository.findAllByOrderByDateDesc();
 	}
 
 	@Override
-	public List<Post> findAllOrderByLikesAsc(){
-		return postRepository.findAllByOrderByLikesAsc();
+	public List<Post> findAllOrderByLikesDesc(){
+		return postRepository.findAllByOrderByLikesDesc();
 	}
 
 }

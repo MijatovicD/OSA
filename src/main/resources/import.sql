@@ -1,5 +1,5 @@
-INSERT INTO users (user_id, name, username, password) VALUES (1, 'petar', 'pera', '12pera');
-INSERT INTO users (user_id, name, username, password) VALUES (2, 'miroslav', 'mika', '12mika');
+INSERT INTO users (user_id, name, username, password, role) VALUES (1, 'petar', 'pera', '12pera', 'ADMIN');
+INSERT INTO users (user_id, name, username, password, role) VALUES (2, 'miroslav', 'mika', '12mika', 'PUBLISHER');
 
 INSERT INTO posts (post_id, title, description, date, likes, dislikes, longitude, latitude, user_id) VALUES (1, 'Title 1', 'Description 1', '2018-02-04', 4, 2, 42, 38, 1);
 INSERT INTO posts (post_id, title, description, date, likes, dislikes, longitude, latitude, user_id) VALUES (2, 'Title 2', 'Description 2', '2018-02-18', 35, 4,85,18, 2);

@@ -16,9 +16,9 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
 
 	List<Post> findByUser(User userId);
 
-	List<Post> findAllByOrderByDateAsc();
+	List<Post> findAllByOrderByDateDesc();
 
-	List<Post> findAllByOrderByLikesAsc();
+	List<Post> findAllByOrderByLikesDesc();
 
 	List<Post> findByTagsName(Tag tagName);
 

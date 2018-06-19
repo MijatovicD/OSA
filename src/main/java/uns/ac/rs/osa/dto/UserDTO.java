@@ -2,6 +2,7 @@ package uns.ac.rs.osa.dto;
 
 import java.io.Serializable;
 
+import uns.ac.rs.osa.entity.Role;
 import uns.ac.rs.osa.entity.User;
 
 public class UserDTO implements Serializable {
@@ -10,22 +11,24 @@ public class UserDTO implements Serializable {
 	private String name;
 	private String username;
 	private String password;
+	private Role role;
 	
 	
 	public UserDTO() {
 		
 	}
 
-	public UserDTO(Integer id, String name, String username, String password) {
+	public UserDTO(Integer id, String name, String username, String password, Role role) {
 			this.id = id;
 			this.name = name;
 			this.username = username;
 			this.password = password;
+			this.role = role;
 		}
 	
 	
 	public UserDTO(User user) {
-		this(user.getId(), user.getName(), user.getUsername(), user.getPassword());
+		this(user.getId(), user.getName(), user.getUsername(), user.getPassword(), user.getRole());
 	}
 	public Integer getId() {
 		return id;
