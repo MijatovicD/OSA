@@ -18,7 +18,7 @@ public class UserController {
 
 	@Autowired
 	private UserServiceInterface userService;
-	
+
 	@GetMapping(value="/all")
 	public ResponseEntity<List<UserDTO>> getUsers(){
 		List<User> users = userService.findAll();
@@ -47,6 +47,7 @@ public class UserController {
 		user.setName(userDTO.getName());
 		user.setUsername(userDTO.getUsername());
 		user.setPassword(userDTO.getPassword());
+		user.setRole(User.Role.COMMENTATOR);
 		
 		user = userService.save(user);
 		return new ResponseEntity<UserDTO>(new UserDTO(user), HttpStatus.CREATED);
@@ -64,6 +65,7 @@ public class UserController {
 		user.setName(userDTO.getName());
 		user.setUsername(userDTO.getUsername());
 		user.setPassword(userDTO.getPassword());
+		user.setRole(userDTO.getRole());
 
 		user = userService.save(user);
 		return new ResponseEntity<UserDTO>(new UserDTO(user), HttpStatus.OK);
@@ -76,7 +78,7 @@ public class UserController {
 			return new ResponseEntity<UserDTO>(new UserDTO(user), HttpStatus.OK);
 			
 		}
-		
+
 		return new ResponseEntity<UserDTO>(HttpStatus.NOT_FOUND);
 	}
 	

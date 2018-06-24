@@ -1,7 +1,9 @@
 package uns.ac.rs.osa.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -13,6 +15,12 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name="users")
 public class User implements Serializable{
+
+	public enum Role{
+		ADMIN,
+		USER,
+		COMMENTATOR
+	}
 
 	@Id
 	@GeneratedValue(strategy=IDENTITY)
@@ -35,8 +43,16 @@ public class User implements Serializable{
 	private Set<Comment> comments = new HashSet<Comment>();
 
 	@Enumerated(EnumType.STRING)
+	@Column(name="role", unique=false, nullable=false)
 	private Role role;
-	
+
+	public User(Integer id, String name, String username, String password) {
+		this.id = id;
+		this.name = name;
+		this.username = username;
+		this.password = password;
+	}
+
 	public User() {
 		
 	}
@@ -80,7 +96,8 @@ public class User implements Serializable{
 	public void setRole(Role role) {
 		this.role = role;
 	}
-/*
+
+	/*
 	public Set<Post> getPosts() {
 		return posts;
 	}
@@ -107,7 +124,6 @@ public class User implements Serializable{
 				", password='" + password + '\'' +
 				", posts=" + posts +
 				", comments=" + comments +
-				", role=" + role +
 				'}';
 	}
 }
